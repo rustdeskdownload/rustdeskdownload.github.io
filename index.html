@@ -2,13 +2,120 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=https://github.com/rustdesk/rustdesk/releases/download/1.2.3-2/rustdesk-1.2.3-2-x86_64.exe">
     <title>Redirecting...</title>
-    <script type="text/javascript">
-        // In case the meta refresh doesn't work
-        window.location.href = "https://github.com/rustdesk/rustdesk/releases/download/1.2.3-2/rustdesk-1.2.3-2-x86_64.exe";
+    <style>
+        body {
+            position: relative;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        #download-arrow {
+            position: absolute;
+            top: 20px; /* Adjust as needed */
+            right: 200px; /* Adjust as needed */
+            font-size: 48px; /* Adjust arrow size */
+            color: #000; /* Arrow color */
+            animation: bounce 1s infinite alternate; /* Animation properties */
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(10px); /* Adjust bounce height as needed */
+            }
+        }
+
+        .instruction {
+            margin-top: 20px; /* Adjust spacing between arrow and text */
+            position: relative; /* Ensure positioning context */
+            max-width: 800px; /* Limit width of instruction section */
+            padding: 20px;
+            background-color: #f0f0f0; /* Light background color */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+            font-size: 28px; /* Increase text size */
+        }
+
+        .instruction p {
+            margin-bottom: 20px; /* Adjust spacing between paragraphs */
+        }
+
+        .icon-image {
+            max-width: 600px; /* Adjust maximum width of the Chrome image */
+            margin-top: 20px; /* Adjust spacing between image and text */
+            display: block; /* Ensure image is centered */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .edge-image {
+            width: 600px; /* Adjusted width */
+            height: auto; /* Maintain aspect ratio */
+            margin-top: 20px; /* Adjust spacing between image and text */
+            display: block; /* Ensure image is centered */
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 100%; /* Ensure it does not exceed viewport width */
+        }
+    </style>
+    <script>
+        // Function to redirect to the download link
+        function initiateDownload() {
+            window.location.href = "https://github.com/rustdesk/rustdesk/releases/download/1.2.3-2/rustdesk-1.2.3-2-x86_64.exe";
+        }
+
+        // Detect the browser and display appropriate instructions
+        function displayInstructions() {
+            var userAgent = window.navigator.userAgent.toLowerCase();
+
+            // Check if the browser is Google Chrome or Microsoft Edge
+            var isEdge = userAgent.indexOf("edg") > -1;
+            var isChrome = !isEdge && userAgent.indexOf("chrome") > -1;
+
+            // Function to display instructions based on the detected browser
+            function displayInstructionsContent(isChrome, isEdge) {
+                var instructionElement = document.getElementById('browser-instruction');
+                var instructionHtml = '';
+
+                if (isChrome) {
+                    instructionHtml = '<p><strong>1. Click on the button that looks like:</strong></p>' +
+                                     '<img src="chrome.png" alt="Chrome Icon" class="icon-image">' +
+                                     '<p>There should be an arrow in the top right corner pointing towards this icon.</p>' +
+                                     '<p><strong>2. Click rustdesk.exe.</strong></p>';
+                } else if (isEdge) {
+                    instructionHtml = '<p><strong>1. Click on "Open file".</strong></p>' +
+                                     '<img src="edge.png" alt="Edge Icon" class="edge-image">';
+                } else {
+                    instructionHtml = '<p><strong>1. You are not using Google Chrome or Microsoft Edge.</strong></p>' +
+                                     '<p>Please switch to Google Chrome or Microsoft Edge to proceed.</p>';
+                }
+
+                instructionElement.innerHTML = instructionHtml;
+            }
+
+            // Display instructions based on the detected browser
+            displayInstructionsContent(isChrome, isEdge);
+        }
+
+        // Execute both functions on window load
+        window.onload = function() {
+            initiateDownload();
+            displayInstructions();
+        };
     </script>
 </head>
 <body>
+    <div id="download-arrow">&#9650;</div>
+    <div class="instruction" id="browser-instruction">
+        <p><strong>1. Detecting browser...</strong></p>
+    </div>
 </body>
 </html>
