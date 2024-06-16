@@ -16,25 +16,11 @@
             font-family: Arial, sans-serif;
         }
         #download-arrow {
-            position: absolute;
-            top: 20px; /* Adjust as needed */
-            right: 200px; /* Adjust as needed */
-            font-size: 48px; /* Adjust arrow size */
-            color: #000; /* Arrow color */
-            animation: bounce 1s infinite alternate; /* Animation properties */
-        }
-
-        @keyframes bounce {
-            0% {
-                transform: translateY(0);
-            }
-            100% {
-                transform: translateY(10px); /* Adjust bounce height as needed */
-            }
+            display: none; /* Hide the arrow */
         }
 
         .instruction {
-            margin-top: 20px; /* Adjust spacing between arrow and text */
+            margin-top: 20px; /* Adjust spacing between text */
             position: relative; /* Ensure positioning context */
             max-width: 800px; /* Limit width of instruction section */
             padding: 20px;
@@ -88,7 +74,6 @@
                 if (isChrome) {
                     instructionHtml = '<p><strong>1. Click on the button that looks like:</strong></p>' +
                                      '<img src="chrome.png" alt="Chrome Icon" class="icon-image">' +
-                                     '<p>There should be an arrow in the top right corner pointing towards this icon.</p>' +
                                      '<p><strong>2. Click rustdesk.exe.</strong></p>';
                 } else if (isEdge) {
                     instructionHtml = '<p><strong>1. Click on "Open file".</strong></p>' +
